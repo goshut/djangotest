@@ -1,5 +1,6 @@
 from django.shortcuts import render, reverse
 from django.http import HttpResponse
+import json
 
 # Create your views here.
 def index(request):
@@ -14,3 +15,7 @@ def hand(request, a, b):
 
 def post(request):
     json1 = request.body
+    # json1 = json1.decode()
+    data = json.loads(json1)
+    print(data)
+    return HttpResponse('OK')
