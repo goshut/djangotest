@@ -26,7 +26,8 @@ SECRET_KEY = 'k8*zvab!)qh@y9#a+fvu*ff=0(0!tu3r*95^g1t8lx2_bx86s2'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '192.168.152.128'
+    '192.168.152.128',
+    '192.168.0.115'
 ]
 
 
@@ -133,7 +134,7 @@ STATICFILES_DIRS = [
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/0",
+        "LOCATION": "redis://0.0.0.0:6379/0",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
