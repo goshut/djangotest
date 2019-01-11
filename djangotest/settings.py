@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
-    'request_response.apps.RequestResponseConfig'
+    'request_response.apps.RequestResponseConfig',
+    'classview.apps.ClassviewConfig'
 ]
 
 MIDDLEWARE = [
