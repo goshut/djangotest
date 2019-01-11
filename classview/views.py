@@ -17,7 +17,15 @@ def decorator1(fun):
 class View1(View):
 
     def get(self, request):
-        return HttpResponse('GET')
+        data = {
+            'name': 'lpp',
+            'new_list': [1, 2, 5],
+            'new_dict': [
+                {'name': 'new_pp'},
+                {'age': '99'}
+            ],
+        }
+        return render(request, 'index1.html', context=data)
 
     def post(self, request):
         return HttpResponse('post')
