@@ -26,7 +26,7 @@ SECRET_KEY = 'k8*zvab!)qh@y9#a+fvu*ff=0(0!tu3r*95^g1t8lx2_bx86s2'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '192.168.152.128',
+    '192.168.28.128',
     '192.168.0.115'
 ]
 
@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'middleware.my_middleware'
+    # 'middleware.my_middleware'
 ]
 
 ROOT_URLCONF = 'djangotest.urls'
@@ -139,6 +139,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+# 图片保存地址
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 
 # session 的redis 存储位置配置
@@ -155,3 +157,5 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 # session redis 库设置为1天
 SESSION_COOKIE_AGE = 60*60*24
+
+

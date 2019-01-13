@@ -8,6 +8,7 @@ class Book(models.Model):
     bread = models.IntegerField(default=0, verbose_name='阅读量')
     bcomment = models.IntegerField(default=0, verbose_name='评论量')
     is_delete = models.BooleanField(default=False, verbose_name='逻辑删除')
+    image = models.ImageField(upload_to='bookimage', verbose_name='图片', null=True)
 
     class Meta:
         db_table = 'tb_books'  # 指明数据库表名
@@ -17,6 +18,12 @@ class Book(models.Model):
     def __str__(self):
         """定义每个数据对象的显示信息"""
         return self.btitle
+
+    def pub_date(self):
+        return self.bpub_date.strftime('%Y-%m-%d')
+
+    pub_date.short_description = '发布日期'
+    pub_date.admin_order_field = 'bpub_date'
 
 
 # 定义英雄模型类HeroInfo
@@ -39,26 +46,31 @@ class Hero(models.Model):
     def __str__(self):
         return self.hname
 
+    def book_comment(self):
+        return self.hbook.bcomment
+
+    book_comment.short_description = '图书阅读量'
+
 
 
 from datetime import date
 
 
-book = Book.objects.create(
-    btitle='西游记666',
-    bpub_date=date(1998, 1, 1),
-    bread=100,
-    bcomment=10,
-)
-Hero.objects.create(
-    hname='孙悟空',
-    hgender=0,
-    hcomment='heihei',
-    hbook=book
-)
-Hero.objects.create(
-    hname='猪八戒',
-    hgender=0,
-    hcomment='啪啪啪啪啪啊飘',
-    hbook=book
-)
+# book = Book.objects.create(
+#     btitle='西游记666',
+#     bpub_date=date(1998, 1, 1),
+#     bread=100,
+#     bcomment=10,
+# )
+# Hero.objects.create(
+#     hname='孙悟空',
+#     hgender=0,
+#     hcomment='heihei',
+#     hbook=book
+# )
+# Hero.objects.create(
+#     hname='猪八戒',
+#     hgender=0,
+#     hcomment='啪啪啪啪啪啊飘',
+#     hbook=book
+# )
