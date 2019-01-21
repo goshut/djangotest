@@ -1,32 +1,24 @@
 from django.shortcuts import render
 from django.views import View
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.utils.decorators import method_decorator
+from rest_framework.generics import GenericAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
+from rest_framework.mixins import ListModelMixin
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 
-# Create your views here.
+from classview.models import Book
+from classview.serializers import Bookserializers, BookInfoSerializer
 
 
-def decorator1(fun):
-    def wrapper(request, *args, **kwargs):
-        print('装饰了')
-        return fun(request, *args, **kwargs)
-    return wrapper
+class Bookview(ListModelMixin, GenericAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookInfoSerializer
+    def get(self, request, pk):
+        return self.list(request)
 
-
-@method_decorator(decorator1, name='dispatch')
-class View1(View):
-
-    def get(self, request):
-        data = {
-            'name': 'lpp',
-            'new_list': [1, 2, 5],
-            'new_dict': [
-                {'name': 'new_pp'},
-                {'age': '99'}
-            ],
-        }
-        return render(request, 'index1.html', context=data)
-
-    def post(self, request):
-        return HttpResponse('post')
-
+    # def get(self, request, pk):
+    #     book = self.get_object()  # get_object()方法根据pk参数查找queryset中的数据对象
+    #     serializer = self.get_serializer(book)
+    #     return Response(serializer.data)

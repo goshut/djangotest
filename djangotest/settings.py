@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'request_response.apps.RequestResponseConfig',
-    'classview.apps.ClassviewConfig'
+    'classview.apps.ClassviewConfig',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
